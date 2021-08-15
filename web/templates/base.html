@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    {% load static %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'web/style/base.css' %}">
+    <link rel="icon" href="{% static 'web/pics/logo.png' %}">
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    {% block linkfile %}{% endblock %}
+</head>
+
+{% block customcss %}
+{% endblock %}
+
+<body>
+    {% block popup %}
+    {% endblock %}
+    <div class="container-fluid" style="background-color: red;">
+        <div class="row">
+            <div class="col-sm-2 menu" style="background-color: #1F2125;" >
+                <img src="{% static 'web/pics/logo.png' %}" width="100px" class="mx-auto logo">
+                <span class="mx-auto logo mb-3" >SongUs</span>
+                <div class="list-group mt-2" >
+
+
+                    {% if request.path == '/' %}
+                        <a href="{% url 'dashboard' %}" class="list-group-item list-group-item-action menuitems customactive">
+                            <img src="{% static 'web/pics/musiclogoactivate.png' %}" class="activatedlogo" width="24px">
+                            <span class="listitemtext" >Dashboard</span>
+                        </a>
+                    {% else %}
+                        <a href="{% url 'dashboard' %}" class="list-group-item list-group-item-action menuitems">
+                            <img src="{% static 'web/pics/musiclogo.png' %}"  width="24px">
+                            <span class="listitemtext" >Dashboard</span>
+                        </a>
+                    {% endif %}
+
+
+
+                    {% if '/group/' in request.path %}
+                        <a href="{% url 'group' %}" class="list-group-item list-group-item-action menuitems customactive">
+                            <img src="{% static 'web/pics/grouplogoactive.png' %}" class="activatedlogo"  width="24px">
+                            <span class="listitemtext" >Groups</span>
+                        </a>
+                    {% else %}
+                        <a href="{% url 'group' %}" class="list-group-item list-group-item-action menuitems">
+                            <img src="{% static 'web/pics/grouplogo.png' %}" width="24px">
+                            <span class="listitemtext" >Groups</span>
+                        </a>
+                    {% endif %}
+
+
+                    {% if '/search/' in request.path %}
+                        <a href="{% url 'search' %}" class="list-group-item list-group-item-action menuitems customactive">
+                            <img src="{% static 'web/pics/searchlogoactive.png' %}" class="activatedlogo" width="24px">
+                            <span class="listitemtext">Search</span>
+                        </a>
+                    {% else %}
+                        <a href="{% url 'search' %}" class="list-group-item list-group-item-action menuitems">
+                            <img src="{% static 'web/pics/searchlogo.png' %}" width="24px">
+                            <span class="listitemtext">Search</span>
+                        </a>
+                    {% endif %}
+
+
+
+                    {% if '/favorite/' in request.path  %}
+                    <a href="{% url 'favorite' %}" class="list-group-item list-group-item-action menuitems customactive">
+                        <img src="{% static 'web/pics/favoritelogoactive.png' %}"  class="activatedlogo" width="24px">
+                        <span class="listitemtext">Favorites</span>
+                    </a>
+                    {% else %}
+                        <a href="{% url 'favorite' %}" class="list-group-item list-group-item-action menuitems">
+                            <img src="{% static 'web/pics/favoritelogo.png' %}" width="24px">
+                            <span class="listitemtext">Favorites</span>
+                        </a>
+                    {% endif %}
+
+                    {% if '/personal/' in request.path %}
+                        <a href="{% url 'personal' %}" class="list-group-item list-group-item-action menuitems customactive">
+                            <img src="{% static 'web/pics/savelogoactive.png' %}" class="activatedlogo" width="24px">
+                            <span class="listitemtext">Personal Playlists</span>
+                        </a>
+                    {% else %}
+                        <a href="{% url 'personal' %}" class="list-group-item list-group-item-action menuitems">
+                            <img src="{% static 'web/pics/savelogo.png' %}" width="24px">
+                            <span class="listitemtext">Personal Playlists</span>
+                        </a>
+                    {% endif %}
+
+                    {% if '/profile/' in request.path %}
+                        <a href="{% url 'profile' user.username %}" class="list-group-item list-group-item-action menuitems customactive">
+                            <img src="{% static 'web/pics/profilelogoactive.png' %}" class="activatedlogo"  width="24px">
+                            <span class="listitemtext">Profile page</span>
+                        </a>
+                    {% else %}
+                        <a href="{% url 'profile' user.username %}" class="list-group-item list-group-item-action menuitems">
+                            <img src="{% static 'web/pics/profilelogo.png' %}" width="24px">
+                            <span class="listitemtext">Profile page</span>
+                        </a>
+                    {% endif %}
+                    <div class="seperator p-2" style="height: 150px;">
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="container-fluid customalert pb-3">
+                                    <img src="{% static 'web/pics/notificationlogo.png' %}" width="50px" height="50px" class="mb-2 mx-auto d-table">
+                                    {{ message }}
+                                </div>
+                                
+                                
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+
+                    <a href="{% url 'logout' %}" class="list-group-item list-group-item-action menuitems text-center mb-3">
+                        <span class="listitemtext mx-auto">Logout</span>
+                    </a>
+                </div>
+                
+            </div>
+
+            
+            <div class="col-sm-7" style="background-color: #161518;">
+                {% block content %}{% endblock %}
+            </div>
+
+
+            <div class="col-sm-3 sidebar px-0" >
+                <!----------------------------------------------------- Group in sidebar --------------------------------------------------------------->
+                {% block sidebar %}
+                <div class="container-fluid px-0">
+                    <div class="title mt-5">
+                        <div class="row p-0 m-0">
+                            <div class="col-8">
+                                <h4>Your groups</h4>
+                            </div>
+                            <div class="col-4">
+                                <a href="{% url 'group' %}" >See all</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% if not isempt %}
+                        {% for group in groups %}
+                            <div class="groupsummary m-4 ml-5 mb-0 pb-4">
+                                <div class="profilepicdiv">
+                                    <a href="{% url 'ingroup' group.id %}">
+                                        <img src="{{group.avatar.url}}" width="50px" height="50px" class="profilepic">
+                                    </a>
+                                    
+                                </div>
+                                <div class="groupdetail">
+                                    <div class="dot"></div>
+                                    <a href="{% url 'ingroup' group.id %}">
+                                        <span class="groupname">{{group.name}}</span><br>
+                                    </a>
+                                    {% if group.NumOfPlayLists == 0 %}
+                                        <span class="groupdes">no playlists</span>
+                                    {% elif group.NumOfPlayLists == 1  %}
+                                        <span class="groupdes">{{group.NumOfPlayLists}} playlist</span>
+                                    {% else %}
+                                        <span class="groupdes">{{group.NumOfPlayLists}} playlists</span>
+                                    {% endif %}
+                                    
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                    <div class="groupsummary m-4 ml-5 mb-0 pb-4">
+                        <h4>Empty !</h4>
+                    </div>
+                    {% endif %}
+                   
+
+                    <!----------------------------------------------------- recent music in sidebar --------------------------------------------------------------->
+                    <div class="title2">
+                            <h4>Recent musics</h4>
+                    </div>
+
+                    {% for recentmusic in recentmusics %}
+                    <!-- recent music pattern -->
+                        <div class="recentmusic p-3">
+                            <div class="musicname">
+                                <h5>{{recentmusic.name}}</h5>
+                                <span class="groupdes">{{recentmusic.artist}}</span>
+                            </div>
+                            
+                                <img onclick="playmusic('{{recentmusic.file.url}}', '{{recentmusic.id}}' , this)" src="{% static 'web/pics/play.png' %}" class="my-auto" width="45px" style="float: right; display: table;">
+                            
+                        </div>
+                    {% endfor %}
+                    
+                </div>
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+</body>
+
+{% block customjs %}
+<script>
+    var isplaying = false
+    var before = '' ;
+    function playmusic(address, musicid , element){
+        
+        if (before != address){
+            if (isplaying){
+                audio.pause();
+                isplaying = false
+            }
+            audio = new Audio(address);
+
+            $.ajax({
+                url: "{% url 'addrecentmusic' %}",
+                method: 'POST',
+                data: {
+                'id': musicid
+                },
+                dataType: 'json',
+                success: function (response) {
+                    console.log(response)
+                },
+                error: function(response){
+                    console.log(response)
+                }
+
+            });
+            before = address ; 
+        }
+        
+        if (!isplaying) {
+            // element.src = "{% static 'web/pics/pausemusic.png' %}";
+            element.src = "{% static 'web/pics/pause.png' %}";
+            audio.play();
+            isplaying = true ;
+        }else{
+            // element.src = "{% static 'web/pics/playmusic.png' %}";
+            element.src = "{% static 'web/pics/play.png' %}";
+            isplaying = false ;
+            audio.pause();
+        }
+    }
+</script>
+
+{% endblock %}
+</html>
+

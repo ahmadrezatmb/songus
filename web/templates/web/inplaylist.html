@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block linkfile %}
+<link rel="stylesheet" href="{% static 'web/style/inplaylist.css' %}">
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+    
+    <div class="customcard">
+        <div class="row">
+            <div class="col-md-4">
+                <img src="{{this_playlist.avatar.url}}" height="200px" width="200px" class="mx-auto d-table avatarcover">
+            </div>
+            <div class="col-md-8">
+                <h2>{{this_playlist.name}}
+                    <a href="{% url 'addfavorite' this_playlist.id %}">
+                        {% if not isfav %}
+                            <img src="{% static 'web/pics/like.png' %}" height="50px" width="50px" class="like">
+                        {% else %}
+                            <img src="{% static 'web/pics/likeactive.png' %}" height="50px" width="50px" class="like">
+                        {% endif %}
+                    </a>
+                    
+                    <a href="{% url 'deleteplaylist' this_playlist.id %}"><img src="{% static 'web/pics/delete.png' %}" height="50px" width="50px" class="like mx-2"></a>
+                </h2>
+                <h3>{{this_playlist.NumOfSongs}} songs</h3>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-8 musicbox mx-auto d-table mt-4">
+
+                    {% for song in songs %}
+                        <div class="music" id="{{song.name}}">
+                            <span>{{song.name}}</span><br>
+                            <span class="singer">{{song.artist}}</span>
+                            <div class="deletemusic">
+                                <a href="{% url 'deletemusic' song.id this_playlist.id %}">
+                                    <img src="{% static 'web/pics/delete.png' %}" height="35px" width="35px">
+                                </a>
+                            </div>
+                            <div class="playmusic">
+                                <img onclick="playmusic('{{song.file.url}}', '{{song.id}}' , this)" src="{% static 'web/pics/playmusic.png' %}" height="35px" width="35px">
+                            </div>
+                            
+                        </div>
+                    {% endfor %}
+
+                   
+                    
+
+                    <div class="addnewmusic mx-auto d-table mt-3">
+                        <a href="{% url 'addmusic' this_playlist.id %}">
+                            <img src="{% static 'web/pics/add.png' %}" height="50px" width="50px" class="mx-auto d-table">
+                            <span class="text-center mx-auto d-table add">add music</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block customjs %}
+<script>
+    var isplaying = false
+    var fitsattmep = true
+    var before = '' ;
+    function playmusic(address , musicid , element){
+        
+        if (before != address){
+            if (isplaying){
+                audio.pause();
+                isplaying = false
+            }
+            audio = new Audio(address);
+            $.ajax({
+                url: "{% url 'addrecentmusic' %}",
+                method: 'POST',
+                data: {
+                'id': musicid
+                },
+                dataType: 'json',
+                success: function (response) {
+                    console.log(response)
+                },
+                error: function(response){
+                    console.log(response)
+                }
+
+            });
+            fitsattmep = false ;
+            before = address ; 
+        }
+        
+        if (!isplaying) {
+            element.src = "{% static 'web/pics/pausemusic.png' %}";
+
+            audio.play();
+            isplaying = true ;
+        }else{
+            element.src = "{% static 'web/pics/playmusic.png' %}";
+
+            isplaying = false ;
+            audio.pause();
+        }
+    }
+</script>
+
+{% endblock %}

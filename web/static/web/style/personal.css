@@ -1,0 +1,79 @@
+.favorite{
+color: white;
+font-size: 42px !important;
+}
+.favorite a,
+.favorite a:hover{
+    text-decoration: none;
+    color: white;
+}
+
+.emptygroups{
+    height: auto;
+    width: 100%;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 35px;
+    background: #1b1d20;
+    box-shadow: inset 20px 20px 60px #17191b,
+                inset -20px -20px 60px #1f2125;
+}
+.customcard{
+    width: 350px;
+    height: 350px;
+    border-radius: 25px;
+
+    background: linear-gradient(145deg, #1F2125, #272a2c);
+
+    margin-bottom: 15px !important;
+
+    transition: all 0.75s ease;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    -o-transition: all 0.5 ease;
+}
+.customcard:hover{
+    -webkit-box-shadow: 0px 0px 22px 6px rgba(43,43,43,0.71); 
+    box-shadow: 0px 0px 22px 6px rgba(43,43,43,0.71);
+}
+.playlistavatar {
+    border-radius: 20px;
+}
+.customcard p , .customcard span  {
+    font-size: 18px;
+}
+.customcard2{
+    width: 350px;
+    height: 350px;
+    border-radius: 25px;
+
+    background: none;
+
+    margin-bottom: 15px !important;
+    font-size: 34px;
+    transition: all 0.75s ease;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    -o-transition: all 0.5 ease;
+}
+.customcard2:hover {
+    -webkit-filter: drop-shadow(0px 0px 7px rgb(253,101,62));
+    filter: drop-shadow(0px 0px 7px rgb(253,101,62));
+}
+.makenewplaylist ,
+.makenewplaylist:hover {
+    border-radius: 50px;
+    border-style: none;
+    background-color: rgb(253,101,62);
+    font-size: 20px !important;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-right: 10px;
+    padding-left: 10px;
+    margin: auto;
+    display: table;
+    color: white;
+    text-decoration: none;
+}

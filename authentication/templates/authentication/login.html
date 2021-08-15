@@ -1,0 +1,46 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SongUs</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="{% static 'authentication/style/login.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            {% endif %}
+            <div class="col-sm-4 mx-auto d-table">
+                <div class="login">
+                    <img src="{% static 'web/pics/logo.png' %}" width="100px" class="logo">
+                    <form action="#" method="POST">
+                        {% csrf_token %}
+                        <input type="text" placeholder="username" name="username">
+                        <p id="usernameerror" class="error" ></p>
+                        <input type="password" placeholder="password" name="password">
+                        <p id="passworderror" class="error"></p>
+                        <input type="submit" value="submit" class="btn">
+                    </form>
+                    <span class="addon mb-2">Haven't register yet ? <a href="{% url 'register' %}">Register.</a></span>
+                    <!-- <span class="addon">Forgot your password ? <a href="#">reset it.</a></span> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

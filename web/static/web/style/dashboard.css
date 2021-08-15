@@ -1,0 +1,53 @@
+.pagecontent{
+    padding-top: 30px;
+    color: white;
+}
+
+.suggestedmusicbox{
+    height: 200px;
+    width: 100%;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 35px;
+    background: #1b1d20;
+    box-shadow: inset 20px 20px 60px #17191b,
+                inset -20px -20px 60px #1f2125;
+}
+
+.suggestedmusicavatar{
+    display: table;
+}
+
+.playsuggestedmusic{
+    height: 70px;
+    width: 150px;
+    float: right;
+    margin-top: 30px;
+    padding: 20px;
+    padding-top: 13px;
+    border-radius: 50px;
+    background: #1b1d20;
+    box-shadow: inset 11px 11px 19px #16171a,
+        inset -11px -11px 19px #202326;
+}
+.playsuggestedmusic p {
+    margin-top: 10px !important;
+    margin-left: 10px;
+    color: rgb(253,101,62);
+    
+}
+
+.playsuggestedmusic p:hover{
+    color: rgb(253,101,62);
+    text-decoration: none !important;
+}
+.notificationbox{
+    height: auto;
+    width: 100%;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 35px;
+    background: #1b1d20;
+    box-shadow: inset 20px 20px 60px #17191b,
+                inset -20px -20px 60px #1f2125;
+}

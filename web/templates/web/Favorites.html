@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block linkfile %}
+<link rel="stylesheet" href="{% static 'web/style/favorite.css' %}">
+{% endblock %}
+
+
+{% block content %}
+            
+<div class="container favorite p-4">
+    <h2 class="text-center mb-5">Favorites</h2>
+    <!-- if not empty -->
+    <h3>Playlists</h3>
+    {% if not isempt2 %}
+    <div class="row p-0 m-0"> 
+        <!-- playlist pattern -->
+        {% for playlist in playlists %}
+            <div class="col-sm-6 mb-4">
+                <a href="{% url 'inplaylist' playlist.id %}">
+                    <div class="card customcard d-inline-flex">
+                        <img src="{{playlist.avatar.url}}" height="75%" width="75%" class="mx-auto mt-2 border-4 playlistavatar">
+                        <p class="m-2  text-center">{{playlist.name}}</p>
+                        <span class="m-2 mt-0 text-center">{{playlist.NumOfSongs}} songs</span>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+        
+    </div>
+    {% else %}
+
+    <!-- if empty -->
+    <div class="container">
+        <div class="emptygroups">
+            <img src="{% static 'web/pics/emptyfavorite.svg' %}" width="400px" class="d-table mx-auto">
+            <h3 class="text-center mb-4">Just try to love more !</h3>
+            
+        </div>
+    </div>
+
+    {% endif %}
+</div>
+{% endblock %}

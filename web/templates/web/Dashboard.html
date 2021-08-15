@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block linkfile %}
+<link rel="stylesheet" href="{% static 'web/style/dashboard.css' %}">
+{% endblock %}
+{% block content %}
+<!--------------------------------------------- remove the above code and just use  Extends --------------------------------------------->
+<div class="container pagecontent mb-4">
+    <div class="suggestedtitle">
+        <span>Todays suggested music</h1></span>
+    </div>
+    <div class="suggestedmusicbox">
+        <div class="row p-0 m-0">
+            <div class="col-4">
+                <img src="{% static 'web/pics/suggestedmusic.svg' %}" height="170px" class="mx-auto my-auto suggestedmusicavatar" >
+            </div>
+            <div class="col-8">
+                <h3>{{suggested.name}}</h3>
+                <span class="groupdes" >{{suggested.artist}}</span>
+                <div class="playsuggestedmusic">
+                    
+                        <img onclick="playmusic('{{suggested.file.url}}','{{suggested.id}}' , this)" src="{% static 'web/pics/play.png' %}" class="my-auto" width="45px" style="float: right; display: table;">
+                        <p>Play</p>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container pagecontent">
+    <div class="suggestedtitle">
+        <span>notifications</h1></span>
+    </div>
+    <div class="notificationbox">
+        <img src="{% static 'web/pics/emptynotific.svg' %}" height="200px" class="mx-auto d-table"><br>
+        <p class="text-center">No notifications. Stay cool.</p>
+    </div>
+</div>
+
+<!--------------------------------------------- remove the below code and just use Extends  --------------------------------------------->
+{% endblock %}
+            
+            
+            
+            
+            

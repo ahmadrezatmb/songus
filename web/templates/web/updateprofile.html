@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block linkfile %}
+<link rel="stylesheet" href="{% static 'web/style/form.css' %}">
+{% endblock %}
+
+
+{% block content %}
+
+
+<div class="container groups p-4">
+    <div class="container">
+        <div class="emptygroups">
+            <h3 class="text-center mb-4">{{formtitle}}</h3>
+            <div class="row p-0 m-0">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="col-md-7 cont d-table mx-auto mb-4">
+                        {{form_p.as_p}}
+                        {{form_u.as_p}}
+                    </div>
+                    
+                    <input type="submit" class="submitbtn mx-auto d-table">
+                    <a href="{% url 'profile' user.username %}" class="mx-auto d-table my-3 mt-4">cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block linkfile %}
+<link rel="stylesheet" href="{% static 'web/style/group.css' %}">
+{% endblock %}
+
+
+{% block content %}
+
+
+<div class="container groups p-4">
+    <h2 class="text-center mb-5">Your Groups</h2>
+
+    <div class="container">
+        {% if not isempt %}
+        <!-- group patternt -->
+        <div class="row p-0 m-0">
+            {% for group in allgroups %}
+                <div class="col-sm-3">
+                    <a href="{% url 'ingroup' group.id %}">
+                        <div class="card customcard d-inline-flex">
+                            <img src="{{ group.avatar.url }}" height="65px" width="65px" class="mx-auto mt-3 mb-1 rounded-circle">
+                            <span class="text-center maingroupname" >{{group.name}}</span>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+            
+            <!-- end pattern -->
+
+
+
+
+            <!-- add new group -->
+            <div class="col-sm-3">
+                <a href="{% url 'newgroup' %}">
+                    <div class="card customcard2 d-inline-flex">
+                        <img src="{% static 'web/pics/add.png' %}" height="50px" width="50px" class="mx-auto mt-3 mb-1">
+                        <span class="text-center maingroupname new" >New</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        
+
+        
+
+        
+        
+        {% else %}
+
+        <div class="emptygroups">
+            <img src="{% static 'web/pics/emptygroup.svg' %}" width="400px" class="d-table mx-auto">
+            <h3 class="text-center mb-4">There is no group !</h3>
+            <div class="row p-0 m-0">
+                <div class="col-sm-6">
+                    <a href="{% url 'newgroup' %}" class="makenewgroup text-center">make a group</a>
+                </div>
+                <div class="col-sm-6">
+                    <a href="{% url 'search' %}" class="joingroup text-center">join a group</a>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}            
+            
+            
+      

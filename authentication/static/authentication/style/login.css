@@ -1,0 +1,52 @@
+* {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+}
+
+.logo{
+    display: table;
+    text-align: center;
+    color: #FC5F37;
+    font-size: 32px;
+    margin: auto;
+}
+body {
+    background-color: rgb(31, 28, 28) !important;
+}
+.login {
+    padding-top: 35%;
+}
+input:not(.btn){
+    width: 90%;
+    color: white;
+    border:solid #FC5F37 2px;
+    background: none;
+    border-radius: 20px;
+    padding: 10px;
+    outline: none;
+    display: table;
+    margin: auto;
+    margin-top: 10px;
+
+}
+.btn {
+    border: solid #FC5F37 2px;
+    background: #FC5F37;
+    border-radius: 15px;
+    display: table;
+    margin: auto;
+    color: white;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+.addon {
+    color: white;
+    text-align: center;
+    margin: auto;
+    display: table;
+}
+
+.addon a , .addon a:hover {
+    color: #FC5F37;
+    
+}

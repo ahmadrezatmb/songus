@@ -1,0 +1,66 @@
+
+.groups h3{
+color: white;
+font-size: 42px !important;
+}
+.groups a,
+.groups a:hover{
+    text-decoration: none;
+    color: white;
+}
+
+.emptygroups{
+    height: auto;
+    width: 100%;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 35px;
+    background: #1b1d20;
+    box-shadow: inset 20px 20px 60px #17191b,
+                inset -20px -20px 60px #1f2125;
+}
+
+.submitbtn {
+    border-radius: 50px;
+    border-style: none;
+    background-color: rgb(253,101,62);
+    font-size: 20px !important;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+    margin: auto;
+    display: table;
+    color: white;
+    text-decoration: none;
+    transition: all 0.75s ease;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    -o-transition: all 0.5 ease;
+}
+
+.submitbtn:hover {
+    -webkit-box-shadow: 0px 0px 18px 2px rgba(253,101,62,0.47); 
+    box-shadow: 0px 0px 18px 2px rgba(253,101,62,0.47);
+}
+
+.cutominput {
+    background: rgb(10,11,12);
+    background: linear-gradient(90deg, rgba(10,11,12,1) 0%, rgba(23,24,24,1) 16%, rgba(16,17,18,1) 58%, rgba(26,27,29,1) 81%, rgba(10,11,12,1) 100%);
+    color: white;
+    border-radius: 35px;
+    outline: none;
+    padding: 7px;
+    border: none;
+    width: 100%;
+    height: 35px;
+}
+
+.imagefield{
+    color: white !important;
+}
+
+.cont {
+    color: white;
+}

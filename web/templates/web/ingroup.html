@@ -1,0 +1,234 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block linkfile %}
+<link rel="stylesheet" href="{% static 'web/style/ingroup.css' %}">
+{% endblock %}
+
+
+{% block content %}
+
+{% block popup %}
+<div class="popup" id="popup-1" style="z-index: 1000; ">
+    <div class="overlay">
+        <div class="o-content">
+            <div class="close-btn" onclick="coyp()" >&times;</div>
+            <h2>join group url : {{joincode}}</h2>
+            <input type="text" id="urlcpy" class="urlcpyclass" >
+            <button class="copybtn creatgroup" id="copybtnid" onclick="coypi()">Copy</button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+<input type="hidden" id="url">
+<div class="container playlist p-4">
+    
+
+    <h2 class="text-center mb-5">{{thisgroup.name}} Group
+        {% if request.user == owner.user %} 
+            <a href="{% url 'updategroup' thisgroup.id %}"><span><img src="{% static 'web/pics/setting.png' %}" width="35px"></span></a>
+        {% endif %}
+
+
+        <a href="#" class="menuelogo" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span><img src="{% static 'web/pics/menulogo.png' %}" width="35px"></span></a>
+        <div class="dropdown-menu customdropdown" >
+            <a class="dropdown-item customdropdownitem" href="#" onclick="coyp()">share</a>
+            <!-- <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a> -->
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item customdropdownitem leave" href="{% url 'leavegroup' thisgroup.id %}">leave group</a>
+        </div>
+
+            
+    </h2>
+    
+    <div class="container">
+        {% if not isempt %}
+        <div class="row p-0 m-0">
+            
+            
+            <!-- playlist patternt -->
+            {% for playlist in playlists %}
+                <div class="col-sm-6 mb-4">
+                    <a href="{% url 'inplaylist' playlist.id %}">
+                        <div class="card customcard d-inline-flex">
+                            <img src="{{playlist.avatar.url}}" height="75%" width="75%" class="mx-auto mt-2 border-4 playlistavatar">
+                            <p class="m-2  text-center">{{playlist.name}}</p>
+                            <span class="m-2 mt-0 text-center">{{playlist.NumOfSongs}} songs</span>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+           
+            
+            <!-- add new group -->
+            <div class="col-sm-6">
+                <a href="{% url 'addplaylist' thisgroup.id %}">
+                    <div class="card customcard2 d-inline-flex">
+                        <img src="{% static 'web/pics/add.png' %}" height="50%" width="50%" class="mx-auto mt-2 mb-5">
+                        <span class="text-center" >New</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        {% else %}
+
+        
+        
+        
+
+        <div class="emptygroups">
+            <img src="{% static 'web/pics/emptyplaylist.svg' %}" width="400px" class="d-table mx-auto">
+            <h3 class="text-center mb-4">There is no playlist !</h3>
+            <div class="row p-0 m-0">
+                <div class="col-sm-12">
+                    <a href="{% url 'addplaylist' thisgroup.id %}" class="makenewplaylist text-center">make a playlist</a>
+                </div>
+                
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+            
+{% endblock %}
+    <!----------------------------------------------------- members in sidebar --------------------------------------------------------------->
+    {% block sidebar %}   
+    <div class="container-fluid px-0">
+            <div class="title mt-5">
+                <div class="row p-0 m-0">
+                    <div class="col-12">
+                        <h4>members</h4>
+                    </div>
+                </div>
+            </div>
+
+            {% for member in members %}
+                <!-- members patterns goes here -->
+                <div class="groupsummary m-4 ml-5 mb-0 pb-4">
+                    <div class="profilepicdiv">
+                        <a href="{% url 'profile' member.user.username %}">
+                            <img src="{{ member.avatar.url }}" width="50px" height="50px" class="profilepic"> 
+                        </a>
+                    </div>
+                    <div class="groupdetail">
+                        <div class="dot"></div>
+                        <a href="{% url 'profile' member.user.username %}">
+                            <span class="groupname">{{member.user.username}}</span><br>
+                        </a>
+                    </div>
+                    {% if request.user == owner.user and owner != member %}
+                    <a href="{% url 'removemember' thisgroup.id member.user.username %}"><img src="{% static 'web/pics/delete.png' %}" width="40px" class="deletelogo"></a>
+                    {% endif %}
+                </div>
+            <!-- end pattern -->
+
+            {% endfor %}
+            
+
+            <!----------------------------------------------------- recent music in sidebar --------------------------------------------------------------->
+            <div class="title2">
+                    <h4>Recent musics</h4>
+            </div>
+
+            <!-- recent music pattern -->
+            <div class="recentmusic p-3">
+                <div class="musicname">
+                    <h5>Wrecked</h5>
+                    <span class="groupdes">imagindragon</span>
+                </div>
+                <a href="#">
+                    <img src="{% static 'web/pics/play.png' %}" class="my-auto" width="45px" style="float: right; display: table;">
+                </a>
+            </div>
+
+            <div class="recentmusic p-3">
+                <div class="musicname">
+                    <h5>Rise</h5>
+                    <span class="groupdes">Hans Zimmer</span>
+                </div>
+                <a href="#">
+                    <img src="{% static 'web/pics/play.png' %}" class="my-auto" width="45px" style="float: right; display: table;">
+                </a>
+            </div>
+
+            <div class="recentmusic p-3">
+                <div class="musicname">
+                    <h5>Low</h5>
+                    <span class="groupdes">Flo Rida</span>
+                </div>
+                <a href="#">
+                    <img src="{% static 'web/pics/play.png' %}"   class="my-auto" width="45px" style="float: right; display: table;">
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}  
+{% block customjs %}
+<script>
+    async function coypi() {
+        
+        var cpytext = '{{join_url}}';
+        var inp = document.getElementById('url');
+        inp.value = cpytext;
+        let text = document.querySelector("#url").value;
+        await navigator.clipboard.writeText(text);
+        var changetext = document.getElementById('copybtnid');
+        changetext.innerHTML = 'copied!' ;
+        //alert('لینک کپی شد')
+    }
+    function coyp(){
+        document.getElementById('popup-1').classList.toggle('active');
+        var x = document.getElementById('urlcpy');
+        x.value =  '{{join_url}}';
+        var changetext = document.getElementById('copybtnid');
+        changetext.innerHTML = 'Copy' ;
+    }
+
+
+
+    var isplaying = false
+    var before = '' ;
+    function playmusic(address, musicid , element){
+        
+        if (before != address){
+            if (isplaying){
+                audio.pause();
+                isplaying = false
+            }
+            audio = new Audio(address);
+
+            $.ajax({
+                url: "{% url 'addrecentmusic' %}",
+                method: 'POST',
+                data: {
+                'id': musicid
+                },
+                dataType: 'json',
+                success: function (response) {
+                    console.log(response)
+                },
+                error: function(response){
+                    console.log(response)
+                }
+
+            });
+            before = address ; 
+        }
+        
+        if (!isplaying) {
+            // element.src = "{% static 'web/pics/pausemusic.png' %}";
+            element.src = "{% static 'web/pics/pause.png' %}";
+            audio.play();
+            isplaying = true ;
+        }else{
+            // element.src = "{% static 'web/pics/playmusic.png' %}";
+            element.src = "{% static 'web/pics/play.png' %}";
+            isplaying = false ;
+            audio.pause();
+        }
+    }
+</script>
+{% endblock %}

@@ -1,0 +1,186 @@
+.emptygroups{
+    color: white;
+    height: auto;
+    width: 100%;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 35px;
+    background: #1b1d20;
+    box-shadow: inset 20px 20px 60px #17191b,
+                inset -20px -20px 60px #1f2125;
+}
+.makenewplaylist ,
+.makenewplaylist:hover {
+    border-radius: 50px;
+    border-style: none;
+    background-color: rgb(253,101,62);
+    font-size: 20px !important;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-right: 10px;
+    padding-left: 10px;
+    margin: auto;
+    display: table;
+    color: white;
+    text-decoration: none;
+}
+.customcard{
+    width: 350px;
+    height: 350px;
+    border-radius: 25px;
+
+    background: linear-gradient(145deg, #1F2125, #272a2c);
+
+    margin-bottom: 15px !important;
+
+    transition: all 0.75s ease;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    -o-transition: all 0.5 ease;
+}
+.customcard:hover{
+    -webkit-box-shadow: 0px 0px 22px 6px rgba(43,43,43,0.71); 
+    box-shadow: 0px 0px 22px 6px rgba(43,43,43,0.71);
+ }
+.customcard2{
+    width: 350px;
+    height: 350px;
+    border-radius: 25px;
+
+    background: none;
+
+    margin-bottom: 15px !important;
+    font-size: 34px;
+    transition: all 0.75s ease;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    -o-transition: all 0.5 ease;
+}
+.customcard2:hover {
+    -webkit-filter: drop-shadow(0px 0px 7px rgb(253,101,62));
+    filter: drop-shadow(0px 0px 7px rgb(253,101,62));
+}
+.playlist a {
+    text-decoration: none;
+    color: white;
+}
+.playlist {
+    color: white;
+}
+.playlistavatar {
+    border-radius: 20px;
+}
+.deletelogo{
+    float: right;
+    margin-top: 10px;
+}
+
+.menuelogo {
+    float: left !important;
+}
+
+.customdropdown {
+    border-radius: 15px;
+    background: linear-gradient(145deg, #1F2125, #272a2c);
+    border: solid rgb(253,101,62) 2px;
+}
+
+.customdropdownitem:hover{
+    background: none !important;
+    color: rgb(221, 221, 221);
+}
+
+.leave {
+    color: tomato !important;
+}
+
+/* ------------------------------ */
+
+.popup h2 {
+    color: white;
+}
+.popup .overlay{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.568);
+    z-index: 100;
+    display: none;
+}
+
+.popup .o-content {
+    background-color: #1B1D20;
+    border-radius: 30px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% , -50%)scale(0);
+    width: 450px;
+    height: auto;
+    text-align: center;
+    padding: 10px;
+    
+}
+
+.popup .close-btn {
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 25px;
+    background-color: rgb(209, 209, 209);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    display: none;
+    
+}
+
+.popup.active .overlay{
+    display: block;
+}
+
+.popup.active .close-btn{
+    display: block;
+    color: black;
+}
+
+.popup.active .o-content {
+    transform: translate(-50% , -50%)scale(1);
+}
+
+.popup .urlcpyclass {
+    width: 400px;
+    direction: ltr;
+    text-align: left;
+    border-radius: 7px;
+    border-style: solid;
+    border-color: rgb(80, 79, 79);
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+.popup .copybtn {
+    padding: 7px;
+}
+
+
+#copybtnid {
+    border: none;
+    background-color: rgb(253,101,62);
+    border-radius: 25px;
+    color: white;
+    padding: 5px;
+    transition: all 0.75s ease;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    -o-transition: all 0.5 ease;
+}
+
+#copybtnid:hover {
+    -webkit-filter: drop-shadow(0px 0px 7px rgb(253,101,62));
+    filter: drop-shadow(0px 0px 7px rgb(253,101,62));
+}

@@ -1,0 +1,67 @@
+.customcard {
+    height: auto;
+    width: 100%;
+    padding: 20px;
+    margin-top: 20px;
+    margin-top: 30px;
+    border-radius: 35px;
+    background: #1b1d20;
+    box-shadow: inset 20px 20px 60px #17191b,
+                inset -20px -20px 60px #1f2125;
+}
+
+.avatarcover{
+    border-radius: 25px;
+}
+
+.customcard h2{
+    color: white;
+
+}
+
+.customcard h3{
+    color: rgb(158, 158, 158);
+    font-size: 20px;
+    
+}
+.like{
+    float: right;
+}
+.music {
+    padding-top: 20px;
+    padding-bottom: 15px;
+    color: white;
+    border-bottom: solid rgb(158, 158, 158) 2px;
+}
+.playmusic {
+    float: right;
+    margin-top: -15px;
+}
+.singer {
+    font-size: 16px !important;
+    color: rgb(158, 158, 158) !important;
+}
+.add {
+    color: white !important;
+}
+
+.addnewmusic a {
+    text-decoration: none;
+}
+.addnewmusic {
+    transition: all 0.75s ease;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    -o-transition: all 0.5 ease;
+}
+.addnewmusic:hover {
+    -webkit-filter: drop-shadow(0px 0px 7px rgb(253,101,62));
+    filter: drop-shadow(0px 0px 7px rgb(253,101,62));
+}
+
+.deletemusic {
+    float: right;
+    margin-top: -15px;
+    margin-left: 5px;
+}

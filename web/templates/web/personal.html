@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block linkfile %}
+<link rel="stylesheet" href="{% static 'web/style/personal.css' %}">
+{% endblock %}
+
+
+{% block content %}
+
+
+<div class="container favorite p-4">
+    <h2 class="text-center mb-5">Personal Playlists</h2>
+    <!-- if not empty -->
+    {% if not isPLempt %}
+    <h3>Playlists</h3>
+    <div class="row p-0 m-0"> 
+        <!-- playlist pattern -->
+        {% for playlist in playlists %}
+            <div class="col-sm-6">
+                <a href="{% url 'inplaylist' playlist.id %}">
+                    <div class="card customcard d-inline-flex">
+                        <img src="{{playlist.avatar.url}}" height="75%" width="75%" class="mx-auto mt-2 border-4 playlistavatar">
+                        <p class="m-2  text-center">{{playlist.name}}</p>
+                        <span class="m-2 mt-0 text-center">{{playlist.NumOfSongs}} songs</span>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+
+        <!-- add new playlist -->
+        <div class="col-sm-6">
+            <a href="{% url 'AddPersonalPlayList' %}">
+                <div class="card customcard2 d-inline-flex">
+                    <img src="{% static 'web/pics/add.png' %}" height="50%" width="50%" class="mx-auto mt-2 mb-5">
+                    <span class="text-center" >New</span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    {% else %}
+    <!-- if empty -->
+    <div class="container">
+        <div class="emptygroups">
+            <img src="{% static 'web/pics/emptypersonal.svg' %}" width="400px" class="d-table mx-auto">
+            <h3 class="text-center mb-4">make a private playlist for yourself.</h3>
+            <a href="{% url 'AddPersonalPlayList' %}" class="makenewplaylist text-center">make</a>
+        </div>
+    </div>
+
+    {% endif %}
+</div>
+
+{% endblock %}
