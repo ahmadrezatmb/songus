@@ -178,7 +178,7 @@
         text2 = document.getElementById('urlcpy');
         text2.select();
         text2.setSelectionRange(0, 99999);
-        await navigator.clipboard.writeText(text2.value);
+        navigator.clipboard.writeText(text2.value);
         var changetext = document.getElementById('copybtnid');
         changetext.innerHTML = 'copied!' ;
         //alert('لینک کپی شد')
