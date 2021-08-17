@@ -80,5 +80,8 @@ class song(models.Model):
     playlist = models.ForeignKey(playlist , on_delete=models.CASCADE ,blank=True , null= True)
     issuggested = models.BooleanField(default=False , null=True , blank=True)
     recentmusic = models.ManyToManyField(songususer , related_name='recentmusic' , null=True , blank=True)
+    date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    class Meta:
+        get_latest_by = 'date'
     def __str__(self):
         return self.name

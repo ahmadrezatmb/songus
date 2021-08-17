@@ -15,21 +15,20 @@ from django.views.decorators.csrf import csrf_exempt
 
 @login_required
 def Dashboardpage(request):
-    this_user =  get_object_or_404(songususer , user__username = request.user.username)
-    groups = this_user.groupss.all()
-    
-    suggested = song.objects.filter(issuggested=True)
-    if suggested.count != 0 :
-        suggested = suggested[::-1][0]
-    
+    this_user =  get_object_or_404(
+                        songususer, 
+                        user__username = request.user.username)
 
-    isempt = False
+    groups = this_user.groupss.all()
+    suggested = song.objects.filter(issuggested=True).latest()
+
+    is_empt = False
     if groups.count() == 0 :
-        isempt = True
+        is_empt = True
     
     context = {
         'groups' : groups.order_by('-cdate')[0:3],
-        'isempt' : isempt ,
+        'isempt' : is_empt ,
         'suggested' : suggested ,
         'recentmusics' : this_user.recentmusic.all()[::-1],
     }
@@ -41,14 +40,14 @@ def group(request):
     groups = this_user.groupss.all()
     
     
-    isempt = False
+    is_empt = False
     if groups.count() == 0 :
-        isempt = True
+        is_empt = True
     
     context = {
         'groups' : groups.order_by('-cdate')[0:3],
         'allgroups' : groups ,
-        'isempt' : isempt,
+        'isempt' : is_empt,
         'recentmusics' : this_user.recentmusic.all()[::-1],
     }
     return render(request , 'web/group.html' , context)
