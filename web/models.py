@@ -33,7 +33,7 @@ class songususer(models.Model):
 
 class group(models.Model):
     name = models.CharField(max_length=256)
-    isprivate = models.BooleanField(default=False , blank=True , null=True)
+    is_private = models.BooleanField(default=False , blank=True , null=True)
     description = models.TextField(blank=True , null=True)
     cdate = models.DateTimeField(auto_now_add=True)
     joincode = models.CharField(max_length=50 ,blank=True , null=True , unique=True)
@@ -78,8 +78,8 @@ class song(models.Model):
     name = models.CharField(max_length=256 , blank=True , null= True)
     artist = models.CharField(max_length=256 , blank=True , null= True)
     playlist = models.ForeignKey(playlist , on_delete=models.CASCADE ,blank=True , null= True)
-    issuggested = models.BooleanField(default=False , null=True , blank=True)
-    recentmusic = models.ManyToManyField(songususer , related_name='recentmusic' , null=True , blank=True)
+    is_suggested = models.BooleanField(default=False , null=True , blank=True)
+    recent_music = models.ManyToManyField(songususer , related_name='recent_music' , null=True , blank=True)
     date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     class Meta:
         get_latest_by = 'date'
