@@ -158,3 +158,15 @@
     color: white;
     text-align: center;
 }
+
+.githubpage a{
+    text-align: center;
+    font-size: 16px;
+    color: #595A61 !important;
+    text-decoration: none;
+}
+
+.githubpage a:hover {
+    color: #292a2b !important;
+    text-decoration: none;
+}
