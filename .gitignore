@@ -85,6 +85,9 @@ target/
 __pycache__/
 local_settings.py
 
+media/files/*
+
+
 .env
 db.sqlite3
 cutlink/settings.py
