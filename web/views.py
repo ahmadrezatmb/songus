@@ -479,7 +479,7 @@ def edit_profile(request , username):
         'form_p' : form_p,
         'form_u' : form_u,
     }
-    add_recent_music_to_context(this_user, context)
+    add_recent_music_to_context(this_user, contex)
     return render(request, 'web/updateprofile.html', contex)
 
 
