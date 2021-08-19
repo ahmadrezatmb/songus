@@ -85,3 +85,12 @@ class song(models.Model):
         get_latest_by = 'date'
     def __str__(self):
         return self.name
+
+
+class RecentMusic(models.Model):
+    song = models.ForeignKey(song , on_delete=models.CASCADE)
+    date = models.DateTimeField(auto_now_add=True)
+    owner = models.ForeignKey(songususer , on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.owner.user.username

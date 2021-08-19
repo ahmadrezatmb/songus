@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 
-from .models import group as thegroups, song 
+from .models import RecentMusic, group as thegroups, song 
 from web.models import songususer ,playlist
 from web.forms import (
     AddNewGroupForm, 
@@ -19,6 +19,9 @@ from web.forms import (
     ProfileUpdateForm,
     UserUpdateForm
 )
+
+def add_recent_music_to_context(user, context):
+    context['recentmusics'] = user.recentmusic_set.all().order_by('-date')
 
 
 @login_required
@@ -35,8 +38,8 @@ def Dashboardpage(request):
         'groups' : groups.order_by('-cdate')[0:3],
         'isempt' : is_groups_empty ,
         'suggested' : suggested ,
-        'recentmusics' : this_user.recent_music.all()[::-1],
     }
+    add_recent_music_to_context(this_user, context)
     return render(request, 'web/Dashboard.html', context)
 
 @login_required
@@ -53,8 +56,8 @@ def group(request):
         'groups' : groups.order_by('-cdate')[0:3],
         'allgroups' : groups ,
         'isempt' : is_groups_empty,
-        'recentmusics' : this_user.recent_music.all()[::-1],
     }
+    add_recent_music_to_context(this_user, context)
     return render(request, 'web/group.html', context)
 
 @login_required
@@ -82,8 +85,8 @@ def search(request):
             'form2' : form2,
             'resultforusers' : results ,
             'resultforgroups' : '',
-            'recentmusics' : this_user.recent_music.all()[::-1],
             }
+            add_recent_music_to_context(this_user, context)
             return render(request, 'web/search.html', context)
     elif 'joincode' in request.POST:
         form = SearchInUsers()
@@ -102,8 +105,8 @@ def search(request):
                 'form2' : form2,
                 'resultforusers' : '' ,
                 'resultforgroups' : results,
-                'recentmusics' : this_user.recent_music.all()[::-1],
             }
+            add_recent_music_to_context(this_user, context)
             return render(request, 'web/search.html', context)
     else:
         form = SearchInUsers()
@@ -115,8 +118,8 @@ def search(request):
         'form2' : form2,
         'resultforusers' : '' ,
         'resultforgroups' : '',
-        'recentmusics' : this_user.recent_music.all()[::-1],
         }
+        add_recent_music_to_context(this_user, context)
         return render(request, 'web/search.html', context)
     
 
@@ -139,8 +142,8 @@ def favoritve(request):
         'isempt' : is_groups_empty,
         'isempt2' : is_favPL_empty,
         'playlists' : favoritve_playlists ,
-        'recentmusics' : this_user.recent_music.all()[::-1],
     }
+    add_recent_music_to_context(this_user, context)
     return render(request, 'web/Favorites.html', context)
 
 
@@ -159,10 +162,10 @@ def personal(request):
     context = {
         'groups' : groups.order_by('-cdate')[0:3],
         'isempt' : is_groups_empty ,
-        'recentmusics' : this_user.recent_music.all()[::-1],
         'playlists' : playlists ,
         'isPLempt' : is_PL_empty ,
     }
+    add_recent_music_to_context(this_user, context)
     return render(request, 'web/personal.html', context)
 
 
@@ -177,8 +180,8 @@ def profile(request ,username):
         'groups' : groups.order_by('-cdate')[0:3],
         'isempt' : is_groups_empt,
         'thisuser' : this_user,
-        'recentmusics' : request.user.user.recent_music.all()[::-1],
     }
+    add_recent_music_to_context(this_user, context)
     return render(request , 'web/profile.html' , context)
 
 @login_required
@@ -204,9 +207,9 @@ def in_group(request , id):
         'playlists' : playlists,
         'isempt' : is_groups_empty,
         'members' : members,
-        'recentmusics' : this_user.recent_music.all()[::-1],
         'join_url' : join_URL, 
     }
+    add_recent_music_to_context(this_user, context)
     return render(request, 'web/ingroup.html', context)
 
 
@@ -239,11 +242,11 @@ def new_group(request):
             'isempt' : is_groups_empty,
             'formtitle' : 'Add new group' ,
             'form' : form ,
-            'recentmusics' : this_user.recent_music.all()[::-1],
             'addon' : ( '<a href=' 
                        + reverse('group') 
                        + ' class="mx-auto d-table my-3 mt-4" >cancel</a>')
         }
+        add_recent_music_to_context(this_user, context)
         return render(request, 'web/Form.html', context)
 
 
@@ -265,11 +268,11 @@ def update_group(request , id):
         context = {
             'formtitle' : 'update group',
             'form' : form,
-            'recentmusics' : request.user.user.recent_music.all()[::-1],
             'addon' : ( '<a href=' 
                        + reverse('ingroup' , args=(id ,)) 
                        +' class="mx-auto d-table my-3 mt-4" >cancel</a>'),
         }
+        add_recent_music_to_context(request.user.user, context)
         return render(request, 'web/Form.html', context)
 
 
@@ -313,9 +316,9 @@ def playlist_view(request , id):
         'isempt' : is_groups_empty,
         'this_playlist' : this_playlist ,
         'songs' : musics ,
-        'recentmusics' : this_user.recent_music.all()[::-1],
         'isfav' : is_fav ,
     }
+    add_recent_music_to_context(this_user, context)
     return render(request, 'web/inplaylist.html', context)
 
 
@@ -363,11 +366,11 @@ def add_music(request , id):
             'isempt' : is_groups_empty,
             'formtitle' : 'Add new Music' ,
             'form' : form ,
-            'recentmusics' : this_user.recent_music.all()[::-1],
             'addon' : (  '<a href='
                        + reverse('inplaylist' , args=(id ,)) 
                        + ' class="mx-auto d-table my-3 mt-4" >cancel</a>'),
         }
+        add_recent_music_to_context(this_user, context)
         return render(request, 'web/Form.html', context)
 
 @login_required
@@ -419,11 +422,11 @@ def add_playlist(request , id):
             'isempt' : is_group_empty,
             'formtitle' : 'Add new PlayList',
             'form' : form,
-            'recentmusics' : this_user.recent_music.all()[::-1],
             'addon' : (  '<a href='
                        + reverse('ingroup' , args=(id ,)) 
                        + ' class="mx-auto d-table my-3 mt-4" >cancel</a>'),
         }
+        add_recent_music_to_context(this_user, context)
         return render(request, 'web/Form.html', context)
 
 @login_required
@@ -475,8 +478,8 @@ def edit_profile(request , username):
     contex = {
         'form_p' : form_p,
         'form_u' : form_u,
-        'recentmusics' : this_user.recent_music.all()[::-1],
     }
+    add_recent_music_to_context(this_user, context)
     return render(request, 'web/updateprofile.html', contex)
 
 
@@ -485,9 +488,26 @@ def add_recent_music(request):
     if 'id' in request.POST:
         this_song = get_object_or_404(song, id=request.POST['id'])
         this_user = request.user.user
+        this_user_recents = RecentMusic.objects.filter(owner=this_user)
+       
+        check_double = this_user_recents.filter(song=this_song)
+        if check_double.count() != 0:
+            return JsonResponse({'status' : 'ok'}, encoder=JSONEncoder)
+
+        # old  version
         if this_user.recent_music.all().count() == 3:
             this_user.recent_music.remove(this_user.recent_music.last())
+        
+        # new version
+        if this_user_recents.count() == 3:
+            this_user_recents.first().delete()
+
+        # old  version
         this_user.recent_music.add(this_song)
+
+        # new version
+        new_recent_music = RecentMusic.objects.create(song=this_song, owner=this_user)
+        new_recent_music.save()
         this_user.save() 
         return JsonResponse({'status' : 'ok'}, encoder=JSONEncoder)
     else:
@@ -523,9 +543,9 @@ def add_personal_playlist(request ):
             'isempt' : is_groups_empty,
             'formtitle' : 'Add new PlayList' ,
             'form' : form ,
-            'recentmusics' : this_user.recent_music.all()[::-1],
             'addon' : (  '<a href=' 
                        + reverse('personal') 
                        + ' class="mx-auto d-table my-3 mt-4" >cancel</a>'),
         }
+        add_recent_music_to_context(this_user, context)
         return render(request, 'web/Form.html', context)

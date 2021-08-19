@@ -191,11 +191,11 @@
                     <!-- recent music pattern -->
                         <div class="recentmusic p-3">
                             <div class="musicname">
-                                <h5>{{recentmusic.name}}</h5>
-                                <span class="groupdes">{{recentmusic.artist}}</span>
+                                <h5>{{recentmusic.song.name}}</h5>
+                                <span class="groupdes">{{recentmusic.song.artist}}</span>
                             </div>
                             
-                                <img onclick="playmusic('{{recentmusic.file.url}}', '{{recentmusic.id}}' , this)" src="{% static 'web/pics/play.png' %}" class="my-auto" width="45px" style="float: right; display: table;">
+                                <img onclick="playmusic('{{recentmusic.song.file.url}}', '{{recentmusic.song.id}}' , this)" src="{% static 'web/pics/play.png' %}" class="my-auto" width="45px" style="float: right; display: table;">
                             
                         </div>
                     {% endfor %}
