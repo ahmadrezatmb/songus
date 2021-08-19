@@ -479,7 +479,7 @@ def edit_profile(request , username):
         'form_p' : form_p,
         'form_u' : form_u,
     }
-    add_recent_music_to_context(this_user, context)
+    add_recent_music_to_context(this_user, contex)
     return render(request, 'web/updateprofile.html', contex)
 
 
@@ -506,7 +506,9 @@ def add_recent_music(request):
         this_user.recent_music.add(this_song)
 
         # new version
-        new_recent_music = RecentMusic.objects.create(song=this_song, owner=this_user)
+        new_recent_music = RecentMusic.objects.create(
+                                                song=this_song,
+                                                owner=this_user)
         new_recent_music.save()
         this_user.save() 
         return JsonResponse({'status' : 'ok'}, encoder=JSONEncoder)
