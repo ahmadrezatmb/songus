@@ -187,8 +187,21 @@
     right: 20px;
 }
 
+.customclosebtn{
+    background-color: rgb(253,101,62);
+    border-radius: 50%;
+    color: white;
+    display: none;
+    position: relative;
+    top: 10px;
+    left: 10px;
+}
 @media only screen and (max-width: 988px) {
     .customnavbar{
         display: block;
     }
+    .customclosebtn{
+        display: block;
+    }
 }
+
