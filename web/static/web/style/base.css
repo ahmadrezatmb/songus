@@ -195,6 +195,8 @@
     position: relative;
     top: 10px;
     left: 10px;
+    width: 15px;
+    height: 15px;
 }
 @media only screen and (max-width: 988px) {
     .customnavbar{
