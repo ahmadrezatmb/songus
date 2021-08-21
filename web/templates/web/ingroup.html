@@ -27,7 +27,7 @@
 
     <h2 class="text-center mb-5">{{thisgroup.name}} Group
         {% if request.user == owner.user %} 
-            <a href="{% url 'updategroup' thisgroup.id %}"><span><img src="{% static 'web/pics/setting.png' %}" width="35px"></span></a>
+            <a href="{% url 'updategroup' thisgroup.id %}"><span><img src="{% static 'web/pics/setting.png' %}" width="35px" class="settingicon" ></span></a>
         {% endif %}
 
 

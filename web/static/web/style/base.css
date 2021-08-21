@@ -176,6 +176,7 @@
 }
 .customnavbar{
     display: none;
+    height: 1px;
 }
 
 .nabbtn{
