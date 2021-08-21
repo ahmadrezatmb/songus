@@ -54,7 +54,7 @@ urlpatterns = [
     path('addtofav/<int:id>', add_favorite , name='addfavorite'),
     path('favorite/playlist/<int:id>', playlist_view , name='favorite-inplaylist'),
 
-    #general urls
+    # general urls
     path('playlist/<int:id>', playlist_view, name='inplaylist'),
     path('addmusic/<int:id>', add_music, name='addmusic'),
     path('deletemusic/<int:musicid>/<int:playlistid>', delete_music, name='deletemusic'),
