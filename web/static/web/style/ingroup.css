@@ -53,6 +53,9 @@
         width: 100% !important;
         height: 100% !important;
     }
+    .emptygroupimage{
+        width: 88%;
+    }
 }
 
 .customcard2{
