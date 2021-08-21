@@ -10,14 +10,15 @@
 <div class="container profile p-4">
     
     <div class="container">
-        <div class="emptygroups">
-            <img src="{{ thisuser.avatar.url }}" width="200px" class="d-table mx-auto profileavatar mb-4">
-            {% if request.user.user == thisuser %}
-            <a href="{% url 'editprofile' thisuser.user.username %}"><img src="{% static 'web/pics/editlogo.png' %}" width="50px" height="50px" class="editbtn"></a>
-            {% endif %}
-            <h3 class="text-center mb-4">username : <span class="username">{{thisuser.user.username}}</span></h3>
-            <h3 class="text-center mb-4">email : <span class="username">{{thisuser.user.email}}</span></h3>
-            
+        <div class="emptygroups row">
+            <div class="col-md">
+                <img src="{{ thisuser.avatar.url }}" width="200px" class="d-table mx-auto profileavatar mb-4">
+                {% if request.user.user == thisuser %}
+                <a href="{% url 'editprofile' thisuser.user.username %}"><img src="{% static 'web/pics/editlogo.png' %}" width="50px" height="50px" class="editbtn"></a>
+                {% endif %}
+                <h3 class="text-center mb-4">username : <span class="username">{{thisuser.user.username}}</span></h3>
+                <h3 class="text-center mb-4">email : <span class="username">{{thisuser.user.email}}</span></h3>
+            </div>
         </div>
     </div>
 </div>
