@@ -18,8 +18,8 @@
         <!-- group patternt -->
         <div class="row p-0 m-0">
             {% for group in allgroups %}
-                <div class="col-sm-3">
-                    <a href="{% url 'ingroup' group.id %}">
+                <div class="col-md-3">
+                    <a href="{% url 'ingroup' group.id %}" class="mx-auto d-table">
                         <div class="card customcard d-inline-flex">
                             <img src="{{ group.avatar.url }}" height="65px" width="65px" class="mx-auto mt-3 mb-1 rounded-circle">
                             <span class="text-center maingroupname" >{{group.name}}</span>

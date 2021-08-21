@@ -15,6 +15,7 @@
 }
 
 .codeinput {
+    width: 73%;
     color: white;
     background: none;
     border: solid rgb(253,101,62) 2px;

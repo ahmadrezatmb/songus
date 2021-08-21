@@ -62,6 +62,19 @@ font-size: 42px !important;
     -webkit-filter: drop-shadow(0px 0px 7px rgb(253,101,62));
     filter: drop-shadow(0px 0px 7px rgb(253,101,62));
 }
+@media only screen and (max-width: 988px) {
+    .customcard{
+        width: 100% !important;
+        height: 100% !important;
+    }
+    .customcard2{
+        width: 100% !important;
+        height: 100% !important;
+    }
+    .emptypersonalimage{
+        width: 88%;
+    }
+}
 .makenewplaylist ,
 .makenewplaylist:hover {
     border-radius: 50px;

@@ -50,8 +50,8 @@
             
             <!-- playlist patternt -->
             {% for playlist in playlists %}
-                <div class="col-sm-6 mb-4">
-                    <a href="{% url 'group-inplaylist' playlist.id %}">
+                <div class="col-lg-6 mb-4">
+                    <a href="{% url 'group-inplaylist' playlist.id %}" class="mx-auto d-table">
                         <div class="card customcard d-inline-flex">
                             <img src="{{playlist.avatar.url}}" height="75%" width="75%" class="mx-auto mt-2 border-4 playlistavatar">
                             <p class="m-2  text-center">{{playlist.name}}</p>

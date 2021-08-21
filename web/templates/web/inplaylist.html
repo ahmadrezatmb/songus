@@ -18,18 +18,21 @@
                 <img src="{{this_playlist.avatar.url}}" height="200px" width="200px" class="mx-auto d-table avatarcover">
             </div>
             <div class="col-md-8">
-                <h2>{{this_playlist.name}}
-                    <a href="{% url 'addfavorite' this_playlist.id %}">
-                        {% if not isfav %}
-                            <img src="{% static 'web/pics/like.png' %}" height="50px" width="50px" class="like">
-                        {% else %}
-                            <img src="{% static 'web/pics/likeactive.png' %}" height="50px" width="50px" class="like">
-                        {% endif %}
-                    </a>
-                    
-                    <a href="{% url 'deleteplaylist' this_playlist.id %}"><img src="{% static 'web/pics/delete.png' %}" height="50px" width="50px" class="like mx-2"></a>
-                </h2>
-                <h3>{{this_playlist.NumOfSongs}} songs</h3>
+                <div>
+                    <h2>{{this_playlist.name}}
+                        <a href="{% url 'addfavorite' this_playlist.id %}">
+                            {% if not isfav %}
+                                <img src="{% static 'web/pics/like.png' %}" height="50px" width="50px" class="like">
+                            {% else %}
+                                <img src="{% static 'web/pics/likeactive.png' %}" height="50px" width="50px" class="like">
+                            {% endif %}
+                        </a>
+                        <br>
+                        <br>
+                        <a href="{% url 'deleteplaylist' this_playlist.id %}"><img src="{% static 'web/pics/delete.png' %}" height="50px" width="50px" class="like ml-2 mr-0"></a>
+                    </h2>
+                    <h3>{{this_playlist.NumOfSongs}} songs</h3>
+                </div>
             </div>
         </div>
         <div class="container-fluid">
