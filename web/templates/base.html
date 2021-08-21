@@ -22,14 +22,23 @@
 {% endblock %}
 
 <body>
+    <!-- navbar show btn in mobile view -->
+    <nav class="fixed-top customnavbar">
+          <button class="navbar-toggler nabbtn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+            <img class="navbarlogo" src="{% static 'web/pics/navbarlogo.png' %}" width="50px" >
+          </button>
+    </nav>
+    
     {% block popup %}
     {% endblock %}
     <div class="container-fluid" style="background-color: red;">
         <div class="row">
-            <div class="col-lg-2 menu" style="background-color: #1F2125;" >
+            
+            <div class="col-lg-2 navbar-expand-lg p-0 m-0" style="background-color: #1F2125;">
+                <div class="offcanvas offcanvas-end menu" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
                 <img src="{% static 'web/pics/logo.png' %}" width="100px" class="mx-auto logo">
                 <span class="mx-auto logo mb-3" >SongUs</span>
-                <div class="list-group mt-2" >
+                <div class="list-group mt-2 offcanvas-body" >
 
 
                     {% if request.path == '/' %}
@@ -126,7 +135,7 @@
                     </a>
                     <span class="githubpage d-table mx-auto"><a href="https://github.com/ahmadrezatmb/songus" class="d-table mx-auto" target="_blank">github</a></span>
                 </div>
-                
+              </div>
             </div>
 
             

@@ -170,3 +170,25 @@
     color: #292a2b !important;
     text-decoration: none;
 }
+
+.navbarlogo {
+    outline: none !important;
+}
+.customnavbar{
+    display: none;
+}
+
+.nabbtn{
+    float: right;
+    outline: none;
+    padding: 0;
+    position: relative;
+    top: 15px;
+    right: 20px;
+}
+
+@media only screen and (max-width: 988px) {
+    .customnavbar{
+        display: block;
+    }
+}
