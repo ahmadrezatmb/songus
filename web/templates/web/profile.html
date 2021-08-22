@@ -17,7 +17,7 @@
                 <a href="{% url 'editprofile' thisuser.user.username %}"><img src="{% static 'web/pics/editlogo.png' %}" width="50px" height="50px" class="editbtn"></a>
                 {% endif %}
                 <h3 class="text-center mb-4">username : <span class="username">{{thisuser.user.username}}</span></h3>
-                <h3 class="text-center mb-4">email : <span class="username">{{thisuser.user.email}}</span></h3>
+                <h3 class="text-center mb-4">email : <span class="username email">{{thisuser.user.email}}</span></h3>
             </div>
         </div>
     </div>
