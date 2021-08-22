@@ -263,7 +263,7 @@ def update_group(request , id):
         context = {
             'formtitle' : 'update group',
             'form' : form,
-            'addon' : ('<a href=' 
+            'addon' : ( '<a href=' 
                        + reverse('deletegroup' , args=(id ,)) 
                        +' class="mx-auto d-table my-3 mt-4 deletebtn" >delete group</a><br>' 
                        +'<a href=' 
