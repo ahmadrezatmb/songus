@@ -21,6 +21,7 @@ from web.views import (
     personal,
     in_group,
     update_group,
+    remove_group,
 )
 
 urlpatterns = [
@@ -36,6 +37,7 @@ urlpatterns = [
     path('group/leavegroup/<int:id>', leave_group, name='leavegroup'),
     path('group/removemember/<int:id>/<str:username>', remove_member, name='removemember'),
     path('join/<str:joincode>', joingroup, name='joingroup'),
+    path('group/delete/<int:id>', remove_group, name='deletegroup'),
 
     # profile page 
     path('profile/<str:username>', profile, name='profile'),

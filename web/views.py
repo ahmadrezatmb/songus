@@ -26,9 +26,7 @@ def add_recent_music_to_context(user, context):
 
 @login_required
 def Dashboardpage(request):
-    this_user = get_object_or_404(
-                        songususer, 
-                        user__username=request.user.username)
+    this_user = request.user.user
     groups = this_user.groupss.all()
     suggested = song.objects.filter(is_suggested=True).latest()
     is_groups_empty = False
@@ -44,10 +42,7 @@ def Dashboardpage(request):
 
 @login_required
 def group(request):
-    this_user = get_object_or_404(
-                            songususer, 
-                            user__username=request.user.username,
-                            )
+    this_user = request.user.user
     groups = this_user.groupss.all()
     is_groups_empty = False
     if groups.count() == 0 :
@@ -268,9 +263,13 @@ def update_group(request , id):
         context = {
             'formtitle' : 'update group',
             'form' : form,
-            'addon' : ( '<a href=' 
+            'addon' : ('<a href=' 
+                       + reverse('deletegroup' , args=(id ,)) 
+                       +' class="mx-auto d-table my-3 mt-4 deletebtn" >delete group</a><br>' 
+                       +'<a href=' 
                        + reverse('ingroup' , args=(id ,)) 
-                       +' class="mx-auto d-table my-3 mt-4" >cancel</a>'),
+                       +' class="mx-auto d-table my-3 mt-3" >cancel</a><br>'
+                       ),
         }
         add_recent_music_to_context(request.user.user, context)
         return render(request, 'web/Form.html', context)
@@ -495,15 +494,15 @@ def add_recent_music(request):
             return JsonResponse({'status' : 'ok'}, encoder=JSONEncoder)
 
         # old  version
-        if this_user.recent_music.all().count() == 3:
-            this_user.recent_music.remove(this_user.recent_music.last())
+        # if this_user.recent_music.all().count() == 3:
+        #   this_user.recent_music.remove(this_user.recent_music.last())
         
         # new version
         if this_user_recents.count() == 3:
             this_user_recents.first().delete()
 
         # old  version
-        this_user.recent_music.add(this_song)
+        # this_user.recent_music.add(this_song)
 
         # new version
         new_recent_music = RecentMusic.objects.create(
@@ -551,3 +550,13 @@ def add_personal_playlist(request ):
         }
         add_recent_music_to_context(this_user, context)
         return render(request, 'web/Form.html', context)
+
+@login_required
+def remove_group(request , id):
+    this_group = get_object_or_404(thegroups, id=id)
+    this_user = request.user.user
+    if this_group.owner != this_user:
+        messages.success(request, 'Bad Request!')
+        return redirect('dashboard')
+    this_group.delete()
+    return redirect('group')
