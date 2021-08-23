@@ -12,7 +12,7 @@
     <div class="container">
         <div class="emptygroups row">
             <div class="col-md">
-                <img src="{{ thisuser.avatar.url }}" width="200px" class="d-table mx-auto profileavatar mb-4">
+                <img src="{{ thisuser.avatar.url }}" width="200px" height="200px" class="d-table mx-auto profileavatar mb-4">
                 {% if request.user.user == thisuser %}
                 <a href="{% url 'editprofile' thisuser.user.username %}"><img src="{% static 'web/pics/editlogo.png' %}" width="50px" height="50px" class="editbtn"></a>
                 {% endif %}
