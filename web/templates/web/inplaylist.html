@@ -101,7 +101,14 @@
             fitsattmep = false ;
             before = address ; 
         }
-        
+        var endedtimer = setInterval(checkifended , 1000);
+        function checkifended(){
+            console.log('wokibng');
+            if (audio.ended){
+                element.src = "{% static 'web/pics/playmusic.png' %}";
+                clearInterval(endedtimer);
+            }
+        }
         if (!isplaying) {
             element.src = "{% static 'web/pics/pausemusic.png' %}";
 
