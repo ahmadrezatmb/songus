@@ -31,7 +31,7 @@
                     <form action="#" method="POST">
                         {% csrf_token %}
                         <input type="text" placeholder="username" name="username">
-                        <p id="usernameerror" class="error" ></p>
+                        <p id="usernameerror" class="error" >{{usernameerror}}</p>
                         <input type="password" placeholder="password" name="password">
                         <p id="passworderror" class="error"></p>
                         <input type="submit" value="submit" class="btn">

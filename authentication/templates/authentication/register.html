@@ -24,14 +24,14 @@
                         {% csrf_token %}
                         <!-- set username  -->
                         <input type="text" name="username"  class="mx-auto customdisplay usernamecls" placeholder="username" ><br>
-                        <p id="usernameerror" class="error"></p>
+                        <p id="usernameerror" class="error">{{usernameerror}}</p>
             
             
                         <!-- set password -->
                         <div class="mx-auto fakeinput">
                             <input type="password" name="password"  class="mx-auto showpass" placeholder="password" >
                         </div><br>
-                        <p id="passworderror" class="error"></p>
+                        <p id="passworderror" class="error">{{passworderror}}</p>
             
             
                         <!-- password again -->
@@ -39,11 +39,11 @@
                             <input type="password" name="passwordagain"  class="mx-auto showpass" placeholder="password again" >
                             
                         </div><br>
-                        <p id="passwordagainerror" class="error"></p>
+                        <p id="passwordagainerror" class="error">{{passwordagainerror}}</p>
             
                         <!-- set email -->
                         <input type="email" name="email"  class="mx-auto customdisplay usernamecls" placeholder="email" ><br>
-                        <p id="emailerror" class="error"></p>
+                        <p id="emailerror" class="error">{{emailerror}}</p>
             
             
                         <input type="submit" value="signup" class="mx-auto btn" >
