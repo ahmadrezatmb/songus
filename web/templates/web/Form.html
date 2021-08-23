@@ -16,9 +16,9 @@
             <div class="row p-0 m-0">
                 <form method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
-                    <div class="col-md-7 cont d-table mx-auto mb-4">
+                    <!-- <div class="col-7 cont d-table mx-auto mb-4"> -->
                         {{form.as_p}}
-                    </div>
+                    <!-- </div> -->
                     
                     <input type="submit" class="submitbtn mx-auto d-table">
                     {{addon|safe}}
