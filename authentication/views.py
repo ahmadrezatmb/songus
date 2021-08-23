@@ -139,7 +139,7 @@ def customregister(request):
         # creating the activated user here
         newbaseuser = User.objects.create(username = username , password= make_password(password) , email = email )
         newuser = songususer.objects.create(user = newbaseuser )
-        privategroup = group.objects.create(name = 'privategroup' , isprivate=True , description='' ,owner = newuser)
+        privategroup = group.objects.create(name = 'privategroup' , is_private=True , description='' ,owner = newuser)
         privategroup.save()
         user_exist.isactivenow = True
         newuser.save()
