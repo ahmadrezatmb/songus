@@ -66,3 +66,14 @@
     margin-top: -15px;
     margin-left: 5px;
 }
+
+.customdropdown {
+    border-radius: 15px;
+    background: linear-gradient(145deg, #1F2125, #272a2c);
+    border: solid rgb(253,101,62) 2px;
+    padding: 5px;
+}
+
+.volume {
+    display: none;
+}

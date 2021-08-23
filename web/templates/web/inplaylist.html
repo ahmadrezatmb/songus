@@ -33,6 +33,12 @@
                     </h2>
                     <h3>{{this_playlist.NumOfSongs}} songs</h3>
                 </div>
+                <div>
+                    <a href="#" class="volume" data-bs-toggle="dropdown" id="volumeid" role="button" aria-haspopup="true" aria-expanded="false"><img src="{% static 'web/pics/volumelogo.png' %}" height="50px" width="50px" class="volumelogo"></a>
+                    <div class="dropdown-menu customdropdown" >
+                        <input type="range" class="form-range" id="musicvolume" onchange="changevolume(this.value)">
+                    </div>
+                </div>
             </div>
         </div>
         <div class="container-fluid">
@@ -75,6 +81,8 @@
     var isplaying = false
     var fitsattmep = true
     var before = '' ;
+    var songVL = document.getElementById('musicvolume');
+    var songVLshowup = document.getElementById('volumeid')
     function playmusic(address , musicid , element){
         
         if (before != address){
@@ -83,6 +91,8 @@
                 isplaying = false
             }
             audio = new Audio(address);
+            var endedtimer = setInterval(checkifended , 1000);
+            songVL.value = (audio.volume)*100;
             $.ajax({
                 url: "{% url 'addrecentmusic' %}",
                 method: 'POST',
@@ -101,7 +111,7 @@
             fitsattmep = false ;
             before = address ; 
         }
-        var endedtimer = setInterval(checkifended , 1000);
+        
         function checkifended(){
             console.log('wokibng');
             if (audio.ended){
@@ -111,15 +121,20 @@
         }
         if (!isplaying) {
             element.src = "{% static 'web/pics/pausemusic.png' %}";
-
+            songVLshowup.classList.toggle("volume")
             audio.play();
             isplaying = true ;
         }else{
             element.src = "{% static 'web/pics/playmusic.png' %}";
-
+            songVLshowup.classList.toggle("volume")
             isplaying = false ;
             audio.pause();
         }
+    }
+
+    function changevolume(volume){
+        audio.volume = (volume / 100 )
+        console.log(volume);
     }
 </script>
 
