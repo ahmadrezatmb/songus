@@ -189,7 +189,7 @@
                 isplaying = false
             }
             audio = new Audio(address);
-
+            var endedtimer = setInterval(checkifended , 1000);
             $.ajax({
                 url: "{% url 'addrecentmusic' %}",
                 method: 'POST',

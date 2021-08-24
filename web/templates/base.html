@@ -238,7 +238,7 @@
                 isplaying = false
             }
             audio = new Audio(address);
-
+            var endedtimer = setInterval(checkifended , 1000);
             $.ajax({
                 url: "{% url 'addrecentmusic' %}",
                 method: 'POST',
@@ -256,7 +256,7 @@
             });
             before = address ; 
         }
-        var endedtimer = setInterval(checkifended , 1000);
+        
         function checkifended(){
             console.log('wokibng');
             if (audio.ended){
