@@ -75,11 +75,12 @@ class playlist(models.Model):
 
 class song(models.Model):
     file = models.FileField(_('File'), upload_to=get_file_upload_path)
-    name = models.CharField(max_length=256 , blank=True , null= True)
-    artist = models.CharField(max_length=256 , blank=True , null= True)
-    playlist = models.ForeignKey(playlist , on_delete=models.CASCADE ,blank=True , null= True)
-    is_suggested = models.BooleanField(default=False , null=True , blank=True)
-    recent_music = models.ManyToManyField(songususer , related_name='recent_music' , null=True , blank=True)
+    name = models.CharField(max_length=256, blank=True, null= True)
+    artist = models.CharField(max_length=256, blank=True, null= True)
+    playlist = models.ForeignKey(playlist, on_delete=models.CASCADE, blank=True, null= True)
+    is_suggested = models.BooleanField(default=False, null=True, blank=True)
+    recent_music = models.ManyToManyField(songususer, related_name='recent_music', null=True, blank=True)
+    owner = models.ForeignKey(songususer, on_delete=models.SET_NULL, null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     class Meta:
         get_latest_by = 'date'

@@ -354,7 +354,8 @@ def add_music(request , id):
             file = form.cleaned_data['file']
             new_song = song.objects.create(name=name,
                                            artist=artist,
-                                           file=file)
+                                           file=file,
+                                           owner=this_user)
             new_song.playlist = this_playlist
             new_song.save()
             return redirect('inplaylist', id)
