@@ -51,11 +51,11 @@
                             <span class="singer">{{song.artist}}</span>
                             <div class="deletemusic">
                                 <a href="{% url 'deletemusic' song.id this_playlist.id %}">
-                                    <img src="{% static 'web/pics/delete.png' %}" height="35px" width="35px">
+                                    <img src="{% static 'web/pics/deletelogo.png' %}" height="33px" width="33px">
                                 </a>
                             </div>
                             <div class="playmusic">
-                                <img onclick="playmusic('{% if song.file %}{{song.file.url}}{% else %}{{song.file_link}}{% endif %}', '{{song.id}}' , this)" src="{% static 'web/pics/playmusic.png' %}" height="35px" width="35px">                                
+                                <img onclick="playmusic('{% if song.file %}{{song.file.url}}{% else %}{{song.file_link}}{% endif %}', '{{song.id}}' , this)" src="{% static 'web/pics/play.png' %}" class="musicstatus" height="35px" width="35px">                                
                             </div>
                             
                         </div>
@@ -82,11 +82,16 @@
     var fitsattmep = true
     var before = '' ;
     var songVL = document.getElementById('musicvolume');
-    var songVLshowup = document.getElementById('volumeid')
+    var songVLshowup = document.getElementById('volumeid');
+    var playbtns = document.getElementsByClassName('musicstatus');
     function playmusic(address , musicid , element){
         
         if (before != address){
             if (isplaying){
+                clearInterval(endedtimer);
+                for(playbtn of playbtns){
+                    playbtn.src = "{% static 'web/pics/play.png' %}";
+                }
                 audio.pause();
                 isplaying = false
             }
@@ -115,17 +120,17 @@
         function checkifended(){
             console.log('wokibng');
             if (audio.ended){
-                element.src = "{% static 'web/pics/playmusic.png' %}";
+                element.src = "{% static 'web/pics/play.png' %}";
                 clearInterval(endedtimer);
             }
         }
         if (!isplaying) {
-            element.src = "{% static 'web/pics/pausemusic.png' %}";
+            element.src = "{% static 'web/pics/pause.png' %}";
             songVLshowup.classList.toggle("volume")
             audio.play();
             isplaying = true ;
         }else{
-            element.src = "{% static 'web/pics/playmusic.png' %}";
+            element.src = "{% static 'web/pics/play.png' %}";
             songVLshowup.classList.toggle("volume")
             isplaying = false ;
             audio.pause();

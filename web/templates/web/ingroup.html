@@ -141,7 +141,7 @@
                         <span class="groupdes">{{recentmusic.song.artist}}</span>
                     </div>
                     
-                        <img onclick="playmusic('{% if recentmusic.song.file %}{{recentmusic.song.file.url}}{% else %}{{recentmusic.song.file_link}}{% endif %}', '{{recentmusic.song.id}}' , this)" src="{% static 'web/pics/play.png' %}" class="my-auto" width="45px" style="float: right; display: table;">
+                        <img onclick="playmusic('{% if recentmusic.song.file %}{{recentmusic.song.file.url}}{% else %}{{recentmusic.song.file_link}}{% endif %}', '{{recentmusic.song.id}}' , this)" src="{% static 'web/pics/play.png' %}" class="my-auto musicstatus" width="45px" style="float: right; display: table;">
                     
                 </div>
             {% endfor %}
@@ -177,10 +177,14 @@
 
     var isplaying = false
     var before = '' ;
+    var playbtns = document.getElementsByClassName('musicstatus');
     function playmusic(address, musicid , element){
         
         if (before != address){
             if (isplaying){
+                for(playbtn of playbtns){
+                    playbtn.src = "{% static 'web/pics/play.png' %}";
+                }
                 audio.pause();
                 isplaying = false
             }
