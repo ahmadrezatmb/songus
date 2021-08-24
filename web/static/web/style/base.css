@@ -58,6 +58,7 @@
 .menu{
     background: rgb(77,49,52);
     background: linear-gradient(164deg, rgba(77,49,52,1) 0%, rgba(31,33,37,1) 33%, rgba(23,23,25,1) 100%);
+    min-height: 100vh;
 }
 
 .customactive,
