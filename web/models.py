@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
@@ -74,9 +75,10 @@ class playlist(models.Model):
 
 
 class song(models.Model):
-    file = models.FileField(_('File'), upload_to=get_file_upload_path)
+    file = models.FileField(_('File'), upload_to=get_file_upload_path, null=True, blank=True)
     name = models.CharField(max_length=256, blank=True, null= True)
     artist = models.CharField(max_length=256, blank=True, null= True)
+    file_link = models.URLField(null=True, blank=True)
     playlist = models.ForeignKey(playlist, on_delete=models.CASCADE, blank=True, null= True)
     is_suggested = models.BooleanField(default=False, null=True, blank=True)
     recent_music = models.ManyToManyField(songususer, related_name='recent_music', null=True, blank=True)
@@ -86,7 +88,13 @@ class song(models.Model):
         get_latest_by = 'date'
     def __str__(self):
         return self.name
-
+    def clean(self):
+        cleaned_data = super().clean()
+        
+        if not self.file and not self.file_link:  # This will check for None or Empty
+            raise ValidationError({'file': 'Even one of file or file link should have a value.'})
+        if self.file_link[-4:] != '.mp3':
+            raise ValidationError({'file_link': 'only mp3 files accepted'})
 
 class RecentMusic(models.Model):
     song = models.ForeignKey(song , on_delete=models.CASCADE)

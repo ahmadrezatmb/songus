@@ -55,7 +55,7 @@
                                 </a>
                             </div>
                             <div class="playmusic">
-                                <img onclick="playmusic('{{song.file.url}}', '{{song.id}}' , this)" src="{% static 'web/pics/playmusic.png' %}" height="35px" width="35px">
+                                <img onclick="playmusic('{% if song.file %}{{song.file.url}}{% else %}{{song.file_link}}{% endif %}', '{{song.id}}' , this)" src="{% static 'web/pics/playmusic.png' %}" height="35px" width="35px">                                
                             </div>
                             
                         </div>

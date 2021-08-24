@@ -36,16 +36,18 @@ class UpadateGroupForm(forms.ModelForm):
 class AddNewMusicForm(forms.ModelForm):
     class Meta:
         model = song
-        fields = ['name' , 'file' , 'artist']
+        fields = ['name' , 'file' , 'artist' , 'file_link']
         widgets = {
             'name': forms.TextInput(attrs={'class': 'cutominput', 'type': 'text' , 'placeholder' : 'name of music'}),
             'artist' : forms.TextInput(attrs={'class': 'cutominput', 'placeholder' : 'Artist'}),
             'file' : forms.FileInput(attrs={'class': 'imagefield'}),
+            'file_link': forms.TextInput(attrs={'class': 'cutominput', 'type': 'text' , 'placeholder' : 'instead of file use its url ...'}),
         }
 
         labels = {
             'name' : '' ,
             'artist' : '' ,
+            'file_link' : 'music url',
         }
 
 

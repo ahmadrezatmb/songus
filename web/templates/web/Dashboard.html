@@ -22,7 +22,7 @@
                 <span class="groupdes" >{{suggested.artist}}</span>
                 <div class="playsuggestedmusic">
                     
-                        <img onclick="playmusic('{{suggested.file.url}}','{{suggested.id}}' , this)" src="{% static 'web/pics/play.png' %}" class="my-auto" width="45px" style="float: right; display: table;">
+                        <img onclick="playmusic('{% if suggested.file %}{{suggested.file.url}}{% else %}{{suggested.file_link}}{% endif %}','{{suggested.id}}' , this)" src="{% static 'web/pics/play.png' %}" class="my-auto" width="45px" style="float: right; display: table;">
                         <p>Play</p>
                     
                 </div>

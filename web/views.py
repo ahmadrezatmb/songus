@@ -352,13 +352,27 @@ def add_music(request , id):
             name = form.cleaned_data['name']
             artist = form.cleaned_data['artist']
             file = form.cleaned_data['file']
+            file_link = form.cleaned_data['file_link']
             new_song = song.objects.create(name=name,
                                            artist=artist,
                                            file=file,
-                                           owner=this_user)
+                                           owner=this_user,
+                                           file_link=file_link)
             new_song.playlist = this_playlist
             new_song.save()
             return redirect('inplaylist', id)
+        else:
+            context = {
+                'groups' : groups.order_by('-cdate')[0:3],
+                'isempt' : is_groups_empty,
+                'formtitle' : 'Add new Music' ,
+                'form' : form ,
+                'addon' : (  '<a href='
+                        + reverse('inplaylist' , args=(id ,)) 
+                        + ' class="mx-auto d-table my-3 mt-4" >cancel</a>'),
+            }
+            add_recent_music_to_context(this_user, context)
+            return render(request, 'web/Form.html', context)
     else:
         form = AddNewMusicForm()
         context = {

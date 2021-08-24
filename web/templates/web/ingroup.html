@@ -141,7 +141,7 @@
                         <span class="groupdes">{{recentmusic.song.artist}}</span>
                     </div>
                     
-                        <img onclick="playmusic('{{recentmusic.song.file.url}}', '{{recentmusic.song.id}}' , this)" src="{% static 'web/pics/play.png' %}" class="my-auto" width="45px" style="float: right; display: table;">
+                        <img onclick="playmusic('{% if recentmusic.song.file %}{{recentmusic.song.file.url}}{% else %}{{recentmusic.song.file_link}}{% endif %}', '{{recentmusic.song.id}}' , this)" src="{% static 'web/pics/play.png' %}" class="my-auto" width="45px" style="float: right; display: table;">
                     
                 </div>
             {% endfor %}
