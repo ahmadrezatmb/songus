@@ -6,6 +6,28 @@
 
 {% block title %}{{thisuser.user.username}} - Songus {% endblock %}
 
+
+{% block popup %}
+<div class="popup" id="popup-1" style="z-index: 1000; ">
+    <div class="overlay">
+        <div class="o-content">
+            <div class="close-btn" onclick="coyp()" >&times;</div>
+            <h2>select group</h2>
+            {% for group in all_groups %}
+                <div class="row user mt-4">
+                    <div class="col-md-10 mx-auto d-table groupseachresult">
+                        <a href="{% url 'add-to-group' group.id thisuser.user.username %}">
+                            <img src="{{group.avatar.url}}" class="profilepic profileinsearch"  width="50px" height="50px">
+                            <span>{{group.name}}</span>
+                        </a>
+                    </div>
+                </div>
+            {% endfor %} 
+        </div>
+    </div>
+</div>
+{% endblock %}
+
 {% block content %}
 <div class="container profile p-4">
     
@@ -18,8 +40,19 @@
                 {% endif %}
                 <h3 class="text-center mb-4">username : <span class="username">{{thisuser.user.username}}</span></h3>
                 <h3 class="text-center mb-4">email : <span class="username email">{{thisuser.user.email}}</span></h3>
+                {% if thisuser.user != request.user %}
+                    <a href="#" onclick="coyp()" class="custombtn d-table mx-auto">add to your groups</a>
+                {% endif %}
             </div>
         </div>
     </div>
 </div>
+{% endblock %}
+{% block customjs %}
+<script>
+
+    function coyp(){
+        document.getElementById('popup-1').classList.toggle('active');
+    }
+</script>
 {% endblock %}

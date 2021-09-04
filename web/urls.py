@@ -2,7 +2,8 @@ from django.urls import path
 from web.views import (
     add_personal_playlist, 
     add_playlist, 
-    add_recent_music, 
+    add_recent_music,
+    add_to_group, 
     edit_profile, 
     joingroup,
     Dashboardpage, 
@@ -38,6 +39,7 @@ urlpatterns = [
     path('group/removemember/<int:id>/<str:username>', remove_member, name='removemember'),
     path('join/<str:joincode>', joingroup, name='joingroup'),
     path('group/delete/<int:id>', remove_group, name='deletegroup'),
+    path('group/addtogroup/<int:id>/<str:username>/', add_to_group , name='add-to-group'),
 
     # profile page 
     path('profile/<str:username>', profile, name='profile'),

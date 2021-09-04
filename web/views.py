@@ -173,6 +173,7 @@ def profile(request ,username):
         is_groups_empt = True
     context = {
         'groups' : groups.order_by('-cdate')[0:3],
+        'all_groups' : groups ,
         'isempt' : is_groups_empt,
         'thisuser' : this_user,
     }
@@ -567,7 +568,7 @@ def add_personal_playlist(request ):
         return render(request, 'web/Form.html', context)
 
 @login_required
-def remove_group(request , id):
+def remove_group(request, id):
     this_group = get_object_or_404(thegroups, id=id)
     this_user = request.user.user
     if this_group.owner != this_user:
@@ -575,3 +576,20 @@ def remove_group(request , id):
         return redirect('dashboard')
     this_group.delete()
     return redirect('group')
+
+@login_required
+def add_to_group(request, id, username):
+    this_group = get_object_or_404(thegroups, id=id)
+    this_user = request.user.user
+    terget_user = get_object_or_404(songususer, user__username=username)
+    members = this_group.member.all()
+    if this_user not in members:
+        messages.success(request,'Bad Request!')
+        return redirect('dashboard')
+    if terget_user in members:
+        messages.success(request,'already joined!')
+        return redirect('ingroup', id)
+    
+    this_group.member.add(terget_user)
+    messages.success(request,'member added!')
+    return redirect('ingroup', id)
