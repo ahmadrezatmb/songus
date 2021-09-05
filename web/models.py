@@ -93,7 +93,7 @@ class song(models.Model):
         
         if not self.file and not self.file_link:  # This will check for None or Empty
             raise ValidationError({'file': 'Even one of file or file link should have a value.'})
-        if self.file_link[-4:] != '.mp3':
+        if not self.file_link == None and self.file_link[-4:] != '.mp3':
             raise ValidationError({'file_link': 'only mp3 files accepted'})
 
 class RecentMusic(models.Model):
